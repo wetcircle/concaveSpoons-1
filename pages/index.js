@@ -5,7 +5,8 @@ import Header from '../components/Header'
 
 export default function Home({ exploreData, cardsData }) {
   return (
-    <div className="bg-gradient-to-tr from-gray-900 to-gray-600 text-white">
+    // <div className="bg-gradient-to-tr from-gray-900 to-gray-600 text-white">
+    <div>
       <Head>
         <title>IPFS Spoons</title>
         <link rel="icon" href="/favicon.ico" />
