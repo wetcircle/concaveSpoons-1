@@ -4,6 +4,15 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
+    colors: {
+      gray: {
+        medium: "#1c1c1c",
+        medium2: "#1c1c1c"
+      },
+      yellow: {
+        medium: "#FFF5BD"
+      }
+    }
   },
   variants: {
     extend: {},

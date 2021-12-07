@@ -15,7 +15,7 @@ function Information() {
                 </div>
                 <div className="border-b w-90 pt-2" />
                 <div className="flex space-x-5">
-                    <div>Price = 0.04</div>
+                    <div>Price = 0.03</div>
                     <div> /// </div>
                     <div> Minted </div>
                     <div> /// </div>
