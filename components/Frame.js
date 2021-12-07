@@ -20,12 +20,12 @@ function Frame() {
                 </div>
             </div>
 
-            <div className="md:ml-5 flex space-x-8 mt-5">
-                <div className="space-x-2 border-2 py-3 px-4 rounded-full cursor-pointer">
+            <div className="md:ml-5 flex space-x-8 mt-8">
+                <div className="hover:animate-bounce space-x-2 border-2 py-3 px-4 rounded-full cursor-pointer">
                     <p className="text-xs md:text-base">Displaying a random seed</p>
                     <p className="text-xs md:text-base">Concave Spoons</p>
                 </div>
-                <div className="flex items-center space-x-2 border-2 py-3 px-4 rounded-full cursor-pointer">
+                <div className="hover:animate-bounce flex items-center space-x-2 border-2 py-3 px-4 rounded-full cursor-pointer">
                     <p className="text-xs md:text-base">Connect a wallet to mint</p>
                 </div>
             </div>

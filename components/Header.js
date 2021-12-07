@@ -6,19 +6,19 @@ function Header() {
             {/* Left */}
             <div>
                 <div className="flex w-max border-4 rounded-full justify-center items-center py-3 space-x-3 sm:space-x-5 px-6">
-                    <div className="cursor-pointer font-bold">Mint</div>
+                    <div className="hover:animate-ping cursor-pointer font-bold">Mint</div>
                     <div>///</div>
-                    <div className="cursor-pointer font-bold">IPFS Spoons</div>
+                    <div className="hover:animate-ping cursor-pointer font-bold">IPFS Spoons</div>
                     <div>///</div>
-                    <div className="cursor-pointer font-bold">On-chain Spoons</div>
+                    <div className="hover:animate-ping cursor-pointer font-bold">On-chain Spoons</div>
                     <div>///</div>
-                    <div className="cursor-pointer font-bold">About</div>
+                    <div className="hover:animate-ping cursor-pointer font-bold">About</div>
                 </div>
             </div>
 
             {/* Right */}
             <div className="flex items-center space-x-4 justify-end">
-                <div className="flex items-center space-x-2 border-2 py-3 px-4 rounded-full cursor-pointer">
+                <div className="hover:animate-bounce flex items-center space-x-2 border-2 py-3 px-4 rounded-full cursor-pointer">
                     <p>Connect</p>
                     <FaWallet />
                 </div>

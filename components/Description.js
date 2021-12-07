@@ -9,9 +9,9 @@ function Information() {
             <p className="text-lg">All stored on - IPFS</p>
             <div className="space-y-3">
                 <div className="flex space-x-6 items-center text-2xl">
-                    <div className="cursor-pointer"><BsTwitter /></div>
+                    <div className="hover:animate-spin cursor-pointer"><BsTwitter /></div>
                     <p>-</p>
-                    <div className="cursor-pointer"><SiDiscord /></div>
+                    <div className="hover:animate-spin cursor-pointer"><SiDiscord /></div>
                 </div>
                 <div className="border-b w-90 pt-2" />
                 <div className="flex space-x-5">
