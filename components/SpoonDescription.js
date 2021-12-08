@@ -2,8 +2,9 @@ import { BsTwitter } from "react-icons/bs";
 import { FaMedium } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 import { GiSailboat } from "react-icons/gi";
+import { FaEthereum } from "react-icons/fa";
 
-function SpoonDescription() {
+function SpoonDescription( {totalMinted} ) {
     return (
         <div className="space-y-8">
             <h1 className="text-4xl font-extrabold">The Concave Spoons</h1>
@@ -20,9 +21,12 @@ function SpoonDescription() {
                 </div>
                 <div className="border-b w-90 pt-2" />
                 <div className="flex space-x-5 items-center">
-                    <div className="text-lg">Price = 0.04 ETH</div>
+                    <div className="flex items-center space-x-1">
+                    <div className="text-lg">Price = 0.04</div>
+                    <FaEthereum />
+                    </div>
                     <div className="text-xl">∞</div>
-                    <div className="text-lg"> 0/4317 Minted </div>
+                    <div className="text-lg"> {totalMinted} / 4317 Minted </div>
                 </div>
             </div>
         </div>
