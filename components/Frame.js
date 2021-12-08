@@ -24,7 +24,7 @@ function Frame() {
                     <p className="text-xs md:text-base">Displaying a random seed</p>
                     <p className="text-xs md:text-sm lg:text-base">Concave Spoons</p>
                 </div> */}
-                <div className="md:ml-10 background-color:white flex items-center space-x-2 border-2 py-3 px-20 cursor-pointer">
+                <div className="md:ml-10 flex items-center space-x-2 border-2 py-3 px-20 cursor-pointer">
                     <p className="text-base md:text-xl lg:text-2xl">Connect a wallet to mint</p>
                 </div>
             </div>
