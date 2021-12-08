@@ -1,5 +1,7 @@
 import { BsTwitter } from "react-icons/bs";
 import { FaMedium } from "react-icons/fa";
+import { FaDiscord } from "react-icons/fa";
+import { GiSailboat } from "react-icons/gi";
 
 function SpoonDescription() {
     return (
@@ -11,6 +13,10 @@ function SpoonDescription() {
                     <a href="https://twitter.com/Concave_Spoons" className="hover:animate-spin cursor-pointer"><BsTwitter /></a>
                     <div className="text-xl">∞</div>
                     <a href="https://medium.com/@The_Concave_Spoons" className="hover:animate-spin cursor-pointer text-3xl"><FaMedium /></a>
+                    <div className="text-xl">∞</div>
+                    <a href="https://opensea.io" className="hover:animate-spin cursor-pointer text-3xl"><GiSailboat /></a>
+                    <div className="text-xl">∞</div>
+                    <a href="https://discord.gg/YMbY7SUJsT" className="hover:animate-spin cursor-pointer text-3xl"><FaDiscord /></a>
                 </div>
                 <div className="border-b w-90 pt-2" />
                 <div className="flex space-x-5 items-center">
