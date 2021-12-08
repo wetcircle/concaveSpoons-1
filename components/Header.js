@@ -19,8 +19,8 @@ function Header() {
 
             {/* Right */}
             <div className="flex items-center space-x-4 justify-end">
-                <div className="hover:animate-bounce flex items-center space-x-2 border-2 py-3 px-5 cursor-pointer">
-                    <p>connect</p>
+                <div className="hover:animate-pulse flex items-center space-x-2 border-2 py-3 px-5 cursor-pointer">
+                    <p>Connect Wallet</p>
                     <FaWallet />
                 </div>
             </div>
