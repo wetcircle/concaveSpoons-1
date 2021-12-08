@@ -1,7 +1,7 @@
 import { BsTwitter } from "react-icons/bs";
 import { FaMedium } from "react-icons/fa";
 
-function Information() {
+function SpoonDescription() {
     return (
         <div className="space-y-8">
             <h1 className="text-4xl font-extrabold">The Concave Spoons</h1>
@@ -23,4 +23,4 @@ function Information() {
     )
 }
 
-export default Information
+export default SpoonDescription
