@@ -15,7 +15,7 @@ function MintSlider() {
         90: '9',
         100: {
             style: {
-                color: 'red',
+                color: 'green',
             },
             label: <strong>10</strong>,
         },
