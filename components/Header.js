@@ -15,7 +15,7 @@ function Header() {
                     <div className="text-xl">∞</div>
                     <div onClick={() => router.push("/onchain")} className="hover:animate-ping cursor-pointer font-bold">on-chain spoons</div>
                     <div className="text-xl">∞</div>
-                    <div onClick={() => router.push("/about")} className="hover:animate-ping cursor-pointer font-bold">about</div>
+                    <div onClick={() => router.push("/more")} className="hover:animate-ping cursor-pointer font-bold">about</div>
                 </div>
             </div>
 
