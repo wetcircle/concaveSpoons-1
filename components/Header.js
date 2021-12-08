@@ -1,6 +1,6 @@
 import { FaWallet } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
-import detectEthereumProvider from '@metamask/detect-provider'
+// import detectEthereumProvider from '@metamask/detect-provider'
 import isConnected from './isConnected.js'
 
 
