@@ -17,7 +17,7 @@ function SpoonDescription( {totalMinted} ) {
                     <div className="text-xl">∞</div>
                     <a href="https://opensea.io" className="hover:animate-spin cursor-pointer text-3xl"><GiSailboat /></a>
                     <div className="text-xl">∞</div>
-                    <a href="https://discord.gg/YMbY7SUJsT" className="hover:animate-spin cursor-pointer text-3xl"><FaDiscord /></a>
+                    <a href="https://discord.com/invite/pPfSGF5PRV" className="hover:animate-spin cursor-pointer text-3xl"><FaDiscord /></a>
                 </div>
                 <div className="border-b w-90 pt-2" />
                 <div className="flex space-x-5 items-center">
