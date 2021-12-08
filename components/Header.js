@@ -8,12 +8,12 @@ function Header() {
         <header className="sticky text-sm md:text-lg top-0 z-50 grid grid-cols-1 md:grid-cols-2 gap-y-3 p-5 md:px-10 items-center bg-gray-medium2">
             {/* Left */}
             <div>
-                <div className="flex overflow-hidden border-2 justify-center items-center py-3 space-x-3 sm:space-x-5 px-6">
+                <div className="flex overflow-hidden max-w-max border-2 justify-center items-center py-3 space-x-3 sm:space-x-5 px-6">
                     <div onClick={() => router.push("/")} className="hover:animate-ping cursor-pointer font-bold">mint</div>
                     <div className="text-xl">∞</div>
                     <div className="hover:animate-ping cursor-pointer font-bold">IPFS spoons</div>
                     <div className="text-xl">∞</div>
-                    <div className="hover:animate-ping cursor-pointer font-bold">on-chain spoons</div>
+                    <div onClick={() => router.push("/onchain")} className="hover:animate-ping cursor-pointer font-bold">on-chain spoons</div>
                     <div className="text-xl">∞</div>
                     <div onClick={() => router.push("/about")} className="hover:animate-ping cursor-pointer font-bold">about</div>
                 </div>
