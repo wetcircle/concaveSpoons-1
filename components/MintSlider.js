@@ -28,7 +28,7 @@ function MintSlider() {
                 handleStyle={[{ backgroundColor: '#FFF5BD' }]}
                 railStyle={{ backgroundColor: 'black' }}
             />
-            <button className="border-2 py-2 px-4">Mint 🥄</button>
+            <button className="border-2 py-2 px-4">Mint</button>
         </div>
     )
 }
