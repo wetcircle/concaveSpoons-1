@@ -13,7 +13,7 @@ function AboutDescription() {
             </div>
             <div className="space-y-2">
             <h1 className="text-2xl fon-extrabold">Team</h1>
-            <a href="https://twitter.com/Concave_Spoons" className="animate-bounce flex items-center space-x-2"> <p>Concave Spoons</p> <GiSpoon /></a>
+            <a href="https://linktr.ee/TheConcaveSpoons" className="animate-bounce flex items-center space-x-2"> <p>Concave Spoons</p> <GiSpoon /></a>
             </div>
         </div>
     )
