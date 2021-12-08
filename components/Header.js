@@ -1,5 +1,8 @@
 import { FaWallet } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
+import detectEthereumProvider from '@metamask/detect-provider'
+import isConnected from './isConnected.js'
+
 
 function Header() {
     const router = useRouter();
@@ -19,7 +22,16 @@ function Header() {
 
             {/* Right */}
             <div className="flex items-center space-x-4 justify-end">
-                <div className="hover:animate-pulse flex items-center space-x-2 border-2 py-3 px-5 cursor-pointer">
+                <div onClick={(e) => {
+                    e.preventDefault();
+                    if (detectEthereumProvider()) {
+                        ethereum.request({ method: 'eth_requestAccounts' });
+                        isConnected = true;
+                        console.log("User is connected!");
+                    } else {
+                        console.error('Please install MetaMask!', error);
+                      }
+                }} className="hover:animate-pulse flex items-center space-x-2 border-2 py-3 px-5 cursor-pointer">
                     <p>Connect Wallet</p>
                     <FaWallet />
                 </div>
