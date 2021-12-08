@@ -20,7 +20,7 @@ function SpoonDescription() {
                 </div>
                 <div className="border-b w-90 pt-2" />
                 <div className="flex space-x-5 items-center">
-                    <div className="text-lg">Price = 0.04</div>
+                    <div className="text-lg">Price = 0.04 ETH</div>
                     <div className="text-xl">∞</div>
                     <div className="text-lg"> 0/4317 Minted </div>
                 </div>
