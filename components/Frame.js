@@ -1,7 +1,11 @@
 import Image from "next/image";
 import spoon from "../public/spoon.gif";
+import MintSlider from "./MintSlider";
+import { useState } from 'react';
 
 function Frame() {
+    const [isConnected, SetIsConnected] = useState(true);
+
     return (
         <div className="-ml-2 md:ml-0 overflow-hidden flex-col">
             <div className="h-[350px] w-[350px] md:h-[500px] md:w-[500px] border-2">
@@ -24,9 +28,9 @@ function Frame() {
                     <p className="text-xs md:text-base">Displaying a random seed</p>
                     <p className="text-xs md:text-sm lg:text-base">Concave Spoons</p>
                 </div> */}
-                <div className="hover:animate-pulse md:ml-10 flex items-center space-x-2 border-2 py-3 px-20 cursor-pointer">
+                {/* <div className="hover:animate-pulse md:ml-10 flex items-center space-x-2 border-2 py-3 px-20 cursor-pointer">
                     <p className="text-base md:text-xl lg:text-2xl">Connect a wallet to mint!</p>
-                </div>
+                </div> */}
             </div>
         </div>
     )
