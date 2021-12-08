@@ -1,7 +1,7 @@
 import AboutDescription from '../components/AboutDescription'
 import Header from '../components/Header'
 
-function About() {
+function about() {
     return (
         <div className="bg-gray-medium text-yellow-medium">
             <Header />
@@ -18,4 +18,4 @@ function About() {
     )
 }
 
-export default About
+export default about
