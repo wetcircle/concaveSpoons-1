@@ -1,5 +1,5 @@
-import AboutDescription from '../components/AboutDescription'
-import Header from '../components/Header'
+import Header from "../components/Header";
+import AboutDescription from "../components/AboutDescription";
 
 function About() {
     return (
