@@ -11,7 +11,7 @@ function Header() {
                 <div className="flex overflow-hidden max-w-max border-2 justify-center items-center py-3 space-x-3 sm:space-x-5 px-6">
                     <div onClick={() => router.push("/")} className="hover:animate-ping cursor-pointer font-bold">mint</div>
                     <div className="text-xl">∞</div>
-                    <div className="hover:animate-ping cursor-pointer font-bold">IPFS spoons</div>
+                    <div onClick={() => router.push("/ipfs")} className="hover:animate-ping cursor-pointer font-bold">IPFS spoons</div>
                     <div className="text-xl">∞</div>
                     <div onClick={() => router.push("/onchain")} className="hover:animate-ping cursor-pointer font-bold">on-chain spoons</div>
                     <div className="text-xl">∞</div>
