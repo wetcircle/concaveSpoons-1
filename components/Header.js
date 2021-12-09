@@ -26,8 +26,8 @@ function Header({verified, updateStatus}) {
                     if (detectEthereumProvider()) {
                         ethereum.request({ method: 'eth_requestAccounts' });
                         if(ethereum.chainId == "0x1") { // eth = 0x1 rinkeby = 0x4
-                        updateStatus(true);
-                        console.log("User is connected!");
+                            updateStatus(true);
+                            console.log("User is connected!");
                         } else {
                             console.log("Connect  to eth!")
                         }
