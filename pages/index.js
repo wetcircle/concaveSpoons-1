@@ -4,6 +4,7 @@ import Frame from '../components/Frame';
 import Header from '../components/Header'
 import { useState } from 'react';
 import MintSlider from '../components/MintSlider';
+import Alert from '../components/Alert';
 
 export default function Home() {
   const [totalMinted, setTotalMinted] = useState(0);
@@ -34,6 +35,7 @@ export default function Home() {
           <div className="">
             <Frame />
             <MintSlider verified={isConnected} currentMint={totalMinted} updateMint={incrementMint} />
+            {!isConnected && <Alert />}
           </div>
         </section>
       </main>
