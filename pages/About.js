@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import AboutDescription from "../components/AboutDescription";
+import TeamTable from "../components/TeamTable";
 
 function About() {
     return (
@@ -11,6 +12,7 @@ function About() {
                         <AboutDescription />
                     </div>
                     <div className="">
+                        <TeamTable />
                     </div>
                 </section>
             </main>

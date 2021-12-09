@@ -28,5 +28,5 @@ module.exports = {
       fill: ['hover', 'focus'],
     },
   },
-  plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [require("tailwind-scrollbar-hide"), require("daisyui")],
 }
