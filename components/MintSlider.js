@@ -7,7 +7,7 @@ function MintSlider(props) {
     
     const handleChange = (sliderValues) => {
         setSliderValue(sliderValues/10);
-        console.log(sliderValues/10);
+        // console.log(sliderValues/10);
     };
     
     const marks = {
