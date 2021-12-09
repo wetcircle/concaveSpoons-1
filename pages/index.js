@@ -16,7 +16,7 @@ export default function Home({ exploreData, cardsData }) {
     // <div className="bg-gradient-to-tr from-gray-900 to-gray-600 text-white">
     <div className="bg-gray-medium text-yellow-medium">
       <Head>
-        <title>IPFS Spoons</title>
+        <title>The Concave Spoons</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
