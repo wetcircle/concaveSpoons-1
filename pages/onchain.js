@@ -7,6 +7,11 @@ function Onchain() {
 
     return (
         <div className="bg-gray-medium text-yellow-medium">
+            <Head>
+                <title>The Concave Spoons | On-chain</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+        
             <Header />
             <main className="max-w-7xl mx-auto px-8 h-[800px] md:px-16 md:h-[1100px] space-y-10 text-center items-center">
                 <h1 className="mt-20 text-3xl">The On-chain Concave Spoons generative collection</h1>
