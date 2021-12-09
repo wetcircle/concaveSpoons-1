@@ -1,10 +1,7 @@
 import Image from "next/image";
 import spoon from "../public/spoon.gif";
-import { useState } from 'react';
 
 function Frame() {
-    const [isConnected, SetIsConnected] = useState(true);
-
     return (
         <div className="-ml-2 md:ml-0 overflow-hidden flex-col">
             <div className="h-[300px] w-[300px] md:h-[500px] md:w-[500px] border-2">

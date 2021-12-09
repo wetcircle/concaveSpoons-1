@@ -36,7 +36,7 @@ function MintSlider(props) {
                 handleStyle={[{ backgroundColor: '#FFF5BD' }]}
                 railStyle={{ backgroundColor: 'black' }}
             />
-            <button onClick={() => props.updateMint(props.currentMint+sliderValue)} className="border-2 py-2 px-4">Mint</button>
+            <button disabled={!props.verified} onClick={() => props.updateMint(props.currentMint+sliderValue)} className={props.verified? "border-2 py-2 px-8" : "border-2 py-2 px-8 opacity-20"}>Mint</button>
         </div>
     )
 }
