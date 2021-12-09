@@ -24,10 +24,14 @@ function Header({verified, updateStatus}) {
                     (e) => {
                     e.preventDefault();
                     if (detectEthereumProvider()) {
-                        ethereum.request({ method: 'eth_requestAccounts' });
+                        const account = ethereum.request({ method: 'eth_requestAccounts' });
                         if(ethereum.chainId == "0x1") { // eth = 0x1 rinkeby = 0x4
                             updateStatus(true);
                             console.log("User is connected!");
+                            account.then(function(result) {
+                                let currAddress = result[0];
+                                document.getElementById("connectButton").innerText = currAddress.slice(0, 6) + "..." + currAddress.slice(-6);
+                            })
                         } else {
                             console.log("Connect  to eth!")
                         }
@@ -36,8 +40,7 @@ function Header({verified, updateStatus}) {
                       }
                 }
                 } className="hover:animate-pulse flex items-center space-x-2 border-2 py-3 px-5 cursor-pointer">
-                    {!verified && <p>Connect Wallet</p>}
-                    {verified && <p>Placeholder for user's wallet address</p>}
+                    <p id="connectButton">Connect Wallet</p>
                     <FaWallet />
                 </div>
             </div>
