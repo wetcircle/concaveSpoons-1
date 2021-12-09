@@ -1,8 +1,15 @@
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { useState } from 'react';
 
-function MintSlider() {
-    const style = { color: "#FFF5BD" };
+function MintSlider(props) {
+    const [sliderValue, setSliderValue] = useState(1);
+    
+    const handleChange = (sliderValues) => {
+        setSliderValue(sliderValues/10);
+        console.log(sliderValues/10);
+    };
+    
     const marks = {
         10: <strong>1</strong>,
         20: '2',
@@ -24,11 +31,12 @@ function MintSlider() {
     return (
         <div className="space-y-10 text-center">
             <Slider min={10} marks={marks} step={null} defaultValue={0}
+                onChange={handleChange}
                 trackStyle={[{ backgroundColor: '#FFF5BD' }]}
                 handleStyle={[{ backgroundColor: '#FFF5BD' }]}
                 railStyle={{ backgroundColor: 'black' }}
             />
-            <button className="border-2 py-2 px-4">Mint</button>
+            <button onClick={() => props.updateMint(props.currentMint+sliderValue)} className="border-2 py-2 px-4">Mint</button>
         </div>
     )
 }

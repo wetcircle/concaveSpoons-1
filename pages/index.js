@@ -8,6 +8,10 @@ import MintSlider from '../components/MintSlider';
 export default function Home({ exploreData, cardsData }) {
   const [totalMinted, setTotalMinted] = useState(0);
   
+  function incrementMint(value) {
+    setTotalMinted(value);
+  }
+  
   return (
     // <div className="bg-gradient-to-tr from-gray-900 to-gray-600 text-white">
     <div className="bg-gray-medium text-yellow-medium">
@@ -25,7 +29,7 @@ export default function Home({ exploreData, cardsData }) {
           <div className="">
             <Frame />
 
-          <MintSlider />
+          <MintSlider currentMint={totalMinted} updateMint={incrementMint}/>
           </div>
         </section>
       </main>
