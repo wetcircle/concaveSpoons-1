@@ -1,6 +1,6 @@
 import AboutDescription from '../components/AboutDescription'
 import HeaderBack from '../components/HeaderBack'
-import TeamTable from '../components/TeamTable'
+//import TeamTable from '../components/TeamTable'
 
 function more() {
     return (
@@ -10,9 +10,6 @@ function more() {
                 <section className="pt-6 mt-20 grid grid-cols-1 lg:grid-cols-2 md:space-x-10 gap-y-10">
                     <div className="">
                         <AboutDescription />
-                    </div>
-                    <div className="">
-                        <TeamTable />
                     </div>
                 </section>
             </main>
