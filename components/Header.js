@@ -1,11 +1,48 @@
 import { FaWallet } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 import detectEthereumProvider from '@metamask/detect-provider';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddress }) {
     const router = useRouter();
-    const [localAddress, setLocalAddress] = useState("Connect wallet");
+    const [localAddress, setLocalAddress] = useState("Connect Wallet");
+
+    const connectWallet = () => {
+        if (detectEthereumProvider()) {
+            const account = ethereum.request({ method: 'eth_requestAccounts' });
+            if (ethereum.chainId == "0x4") { // eth = 0x1 rinkeby = 0x4
+                updateStatus(true);
+                sendAlert(false);
+                // console.log("User is connected");
+                account.then(function (result) {
+                    let currAddress = result[0];
+                    saveAddress(currAddress);
+                    setLocalAddress(currAddress.slice(0, 6) + "..." + currAddress.slice(-6));
+                })
+            } else {
+                updateStatus(false);
+                sendAlert(true);
+                saveErrorMessage("Connect to eth mainnet");
+            }
+        } else {
+            updateStatus(false);
+            sendAlert(true);
+            saveErrorMessage("Please install MetaMask!");
+        }
+    }
+
+    useEffect(() => {
+        connectWallet();
+        if (window.ethereum) {
+          window.ethereum.on("accountsChanged", (accounts) => {
+            if (accounts.length > 0) {
+              connectWallet();
+            } else {
+              setLocalAddress("Connect Wallet");
+            }
+          });
+        }
+    }, []);
 
     return (
         <header className="sticky text-sm md:text-lg top-0 z-50 grid grid-cols-1 md:grid-cols-2 gap-y-3 p-5 md:px-10 items-center bg-gray-medium2">
@@ -23,35 +60,7 @@ function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddre
             {/* Right */}
             <div className="flex items-center space-x-4 justify-end">
                 <div
-                    onClick={
-                        (e) => {
-                            e.preventDefault();
-                            try {
-                                if (detectEthereumProvider()) {
-                                    const account = ethereum.request({ method: 'eth_requestAccounts' });
-                                    if (ethereum.chainId == "0x1") { // eth = 0x1 rinkeby = 0x4
-                                        updateStatus(true);
-                                        sendAlert(false);
-                                        // console.log("User is connected");
-                                        account.then(function (result) {
-                                            let currAddress = result[0];
-                                            saveAddress(currAddress);
-                                            setLocalAddress(currAddress.slice(0, 6) + "..." + currAddress.slice(-6));
-                                        })
-                                    } else {
-                                        updateStatus(false);
-                                        sendAlert(true);
-                                        saveErrorMessage("Connect to eth mainnet");
-                                    }
-                                }
-                            }
-                            catch (error) {
-                                updateStatus(false);
-                                sendAlert(true);
-                                saveErrorMessage("Please make sure that MetaMask is installed and connected to eth mainnet");
-                            }
-                        }
-                    }
+                    onClick={connectWallet}
                     className="hover:animate-pulse flex items-center space-x-2 border-2 py-3 px-5 cursor-pointer">
                     <p>{localAddress}</p>
                     <FaWallet />
