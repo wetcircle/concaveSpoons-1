@@ -75,9 +75,8 @@ function MintSlider(props) {
             method: 'eth_sendTransaction',
             params: [tx],
         }).then((hash) => {
-            console.log(hash);
-            props.updateMint(props.currentMint+value);
-            updateTotalSupply(contract);
+            props.updateMint(parseInt(props.currentMint) + value);
+            console.log(hash)
         }).catch((err) => console.log(err))
         
         return txHash
