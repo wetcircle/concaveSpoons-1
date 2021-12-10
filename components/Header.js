@@ -26,26 +26,29 @@ function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddre
                     onClick={
                         (e) => {
                             e.preventDefault();
-                            if (detectEthereumProvider()) {
-                                const account = ethereum.request({ method: 'eth_requestAccounts' });
-                                if (ethereum.chainId == "0x1") { // eth = 0x1 rinkeby = 0x4
-                                    updateStatus(true);
-                                    sendAlert(false);
-                                    // console.log("User is connected");
-                                    account.then(function (result) {
-                                        let currAddress = result[0];
-                                        saveAddress(currAddress);
-                                        setLocalAddress(currAddress.slice(0, 6) + "..." + currAddress.slice(-6));
-                                    })
-                                } else {
-                                    updateStatus(false);
-                                    sendAlert(true);
-                                    saveErrorMessage("Connect to eth mainnet");
+                            try {
+                                if (detectEthereumProvider()) {
+                                    const account = ethereum.request({ method: 'eth_requestAccounts' });
+                                    if (ethereum.chainId == "0x1") { // eth = 0x1 rinkeby = 0x4
+                                        updateStatus(true);
+                                        sendAlert(false);
+                                        // console.log("User is connected");
+                                        account.then(function (result) {
+                                            let currAddress = result[0];
+                                            saveAddress(currAddress);
+                                            setLocalAddress(currAddress.slice(0, 6) + "..." + currAddress.slice(-6));
+                                        })
+                                    } else {
+                                        updateStatus(false);
+                                        sendAlert(true);
+                                        saveErrorMessage("Connect to eth mainnet");
+                                    }
                                 }
-                            } else {
+                            }
+                            catch (error) {
                                 updateStatus(false);
                                 sendAlert(true);
-                                saveErrorMessage("Please install MetaMask!");
+                                saveErrorMessage("Please make sure that MetaMask is installed and connected to eth mainnet");
                             }
                         }
                     }

@@ -28,7 +28,7 @@ export default function Home() {
   function writeAddress(value) {
     setAddress(value);
   }
-  
+
   function handleVerification(value) {
     setIsConnected(value);
   }
@@ -42,7 +42,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header verified={isConnected} updateStatus={handleVerification} sendAlert={showAlert} saveAddress={writeAddress} saveErrorMessage={writeErrorMessage}/>
+      <Header verified={isConnected} updateStatus={handleVerification} sendAlert={showAlert} saveErrorMessage={writeErrorMessage} saveAddress={writeAddress}/>
       {connectionError && <Alert message={errorMessage}/>}
       <main className="max-w-7xl mx-auto px-8 md:px-16 h-800px md:h-[1100px]">
         <section className="pt-6 mt-20 grid grid-cols-1 lg:grid-cols-2 md:space-x-10 gap-y-10">

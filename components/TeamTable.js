@@ -1,5 +1,4 @@
 import { BsTwitter } from "react-icons/bs";
-import { FaDiscord } from "react-icons/fa";
 
 function TeamTable() {
     return (
