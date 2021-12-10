@@ -54,7 +54,7 @@ function MintSlider(props) {
         if (gasEstimate == undefined) {return false};                                           // Terminates the function upon error
         tx = {
             ...tx,
-            gas: (1.2 * gasEstimate).toString()
+            gas: parseInt(1.2 * gasEstimate).toString()
         };
         
         let txHash = ethereum.request({
