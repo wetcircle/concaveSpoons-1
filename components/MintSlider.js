@@ -62,7 +62,7 @@ function MintSlider(props) {
             params: [tx],
         }).then((hash) => {
             console.log(hash);
-            props.updateMint(props.currentMint+sliderValue);
+            props.updateMint(props.currentMint+value);
         }).catch((err) => console.log(err))
         
         return txHash
