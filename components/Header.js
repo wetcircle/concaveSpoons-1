@@ -3,7 +3,7 @@ import { useRouter } from "next/dist/client/router";
 import detectEthereumProvider from '@metamask/detect-provider';
 import { useState, useEffect } from "react";
 
-function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddress }) {
+function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddress, saveNumToken, saveTokenList }) {
     const router = useRouter();
     const [localAddress, setLocalAddress] = useState("Connect Wallet");
 
@@ -18,6 +18,9 @@ function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddre
                     let currAddress = result[0];
                     saveAddress(currAddress);
                     setLocalAddress(currAddress.slice(0, 6) + "..." + currAddress.slice(-6));
+                    saveTokenList(["list of token ids"]) // from metamask
+                    saveNumToken(0) // an integer, size of the list we get back from metamask
+                    save
                 })
             } else {
                 updateStatus(false);

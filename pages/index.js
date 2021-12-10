@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import { useState } from 'react';
 import MintSlider from '../components/MintSlider';
 import Alert from '../components/Alert';
+import PrivateView from '../components/PrivateView';
 
 export default function Home() {
   const [totalMinted, setTotalMinted] = useState(0);
@@ -12,6 +13,9 @@ export default function Home() {
   const [connectionError, setConnectionError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [address, setAddress] = useState("");
+  const [isPublicMintActive, setIsPublicMintActive] = useState(false);
+  const [numToken, setNumToken] = useState(6);
+  const [tokenList, setTokenList] = useState([]);
 
   function incrementMint(value) {
     setTotalMinted(value);
@@ -20,7 +24,7 @@ export default function Home() {
   function showAlert(value) {
     setConnectionError(value);
   }
-  
+
   function writeErrorMessage(value) {
     setErrorMessage(value);
   }
@@ -29,10 +33,27 @@ export default function Home() {
     setAddress(value);
   }
 
+  function writeNumToken(value) {
+    setNumToken(value)
+  }
+
+  function writeTokenList(value) {
+    setTokenList(value)
+  }
+
   function handleVerification(value) {
     setIsConnected(value);
   }
 
+  // var concavenft = new Contract(jsonInterface, address);
+  // useEffect(() => {
+  //   try {
+  //     const status = await concavenft.isPublicMintActive();
+      // setIsPublicMintActive(status)
+  //   } catch (err) {
+  //     console.log("An error occured when calling contract")
+  //   }
+  // }, [])
 
   return (
     // <div className="bg-gradient-to-tr from-gray-900 to-gray-600 text-white">
@@ -42,8 +63,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header verified={isConnected} updateStatus={handleVerification} sendAlert={showAlert} saveErrorMessage={writeErrorMessage} saveAddress={writeAddress}/>
-      {connectionError && <Alert message={errorMessage}/>}
+      <Header verified={isConnected} updateStatus={handleVerification} sendAlert={showAlert} saveErrorMessage={writeErrorMessage} saveAddress={writeAddress} saveNumToken={writeNumToken} saveTokenList={writeTokenList} />
+      {connectionError && <Alert message={errorMessage} />}
       <main className="max-w-7xl mx-auto px-8 md:px-16 h-800px md:h-[1100px]">
         <section className="pt-6 mt-20 grid grid-cols-1 lg:grid-cols-2 md:space-x-10 gap-y-10">
           <div className="">
@@ -51,8 +72,11 @@ export default function Home() {
           </div>
           <div className="">
             <Frame />
-            <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} />
-            {!isConnected && <Alert message="Connect to ETH mainnet to mint"/>}
+            {!isPublicMintActive && <p className='p-2'>You have {numToken} colors</p>}
+            <div>
+              <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={numToken} tokenList={tokenList}/>
+              {!isConnected && <Alert message="Connect to ETH mainnet to mint" />}
+            </div>
           </div>
         </section>
       </main>
