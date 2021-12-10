@@ -32,15 +32,15 @@ function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddre
     }
 
     useEffect(() => {
-        connectWallet();
         if (window.ethereum) {
-          window.ethereum.on("accountsChanged", (accounts) => {
-            if (accounts.length > 0) {
-              connectWallet();
-            } else {
-              setLocalAddress("Connect Wallet");
-            }
-          });
+            connectWallet();
+            window.ethereum.on("accountsChanged", (accounts) => {
+                if (accounts.length > 0) {
+                    connectWallet();
+                } else {
+                    setLocalAddress("Connect Wallet");
+                }
+            });
         }
     }, []);
 
