@@ -20,7 +20,7 @@ function MintSlider(props) {
             publicSaleStatus = _result;
         }).catch((err) => console.log(err));
 
-        let mintPrice = publicSaleStatus ? 0.04 : 0;
+        let mintPrice = publicSaleStatus ? 0.02 : 0;
 
         const _price = w3.utils.toWei((value * mintPrice).toString());
         const _contractMethod = publicSaleStatus ? contract.methods.mint(value) : contract.methods.mintColorsBatch(props.tokenList.slice(-value));
