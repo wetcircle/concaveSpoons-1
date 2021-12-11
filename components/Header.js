@@ -13,7 +13,7 @@ function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddre
         let contract = new w3.eth.Contract(contractInfo['ABI'], contractInfo['ADDRESS']);
         let tokenList;
         await contract.methods.getUnmintedSpoonsByUser(passAddress).call().then((_result) => {
-            tokenList = _result;
+            tokenList = _result.filter(token => token < 9999);
         }).catch((err) => console.log(err));
         return tokenList
     };
@@ -22,16 +22,16 @@ function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddre
         if (detectEthereumProvider()) {
             const account = ethereum.request({ method: 'eth_requestAccounts' });
             if (ethereum.chainId == "0x4") { // eth = 0x1 rinkeby = 0x4
-                updateStatus(true);
-                sendAlert(false);
                 // console.log("User is connected");
                 account.then(async function (result) {
                     let currAddress = result[0];
+                    updateStatus(true);
+                    sendAlert(false);
                     saveAddress(currAddress);
                     setLocalAddress(currAddress.slice(0, 6) + "..." + currAddress.slice(-6));
                     let tokenList = await colorTokenList(currAddress);
-                    saveTokenList(tokenList[0].slice().sort(function(a,b){return a - b})); // from metamask
-                    saveNumToken(tokenList[1]) // an integer, size of the list we get back from metamask
+                    saveTokenList(tokenList); // from metamask
+                    saveNumToken(tokenList.length) // an integer, size of the list we get back from metamask
                 })
             } else {
                 updateStatus(false);
@@ -52,6 +52,7 @@ function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddre
                 if (accounts.length > 0) {
                     connectWallet();
                 } else {
+                    updateStatus(false);
                     setLocalAddress("Connect Wallet");
                 }
             });
