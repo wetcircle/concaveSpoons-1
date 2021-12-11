@@ -14,7 +14,7 @@ export default function Home() {
   const [errorMessage, setErrorMessage] = useState("");
   const [address, setAddress] = useState("");
   const [isPublicMintActive, setIsPublicMintActive] = useState(false);
-  const [numToken, setNumToken] = useState(6);
+  const [numToken, setNumToken] = useState(0);
   const [tokenList, setTokenList] = useState([]);
   const CONTRACT = {
     'ADDRESS': "0xB30C62BA214a5172ab217D3CE095d20047EF9a42",
