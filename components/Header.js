@@ -20,7 +20,6 @@ function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddre
                     setLocalAddress(currAddress.slice(0, 6) + "..." + currAddress.slice(-6));
                     saveTokenList(["list of token ids"]) // from metamask
                     saveNumToken(0) // an integer, size of the list we get back from metamask
-                    save
                 })
             } else {
                 updateStatus(false);

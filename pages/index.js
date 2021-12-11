@@ -49,7 +49,7 @@ export default function Home() {
   // useEffect(() => {
   //   try {
   //     const status = await concavenft.isPublicMintActive();
-      // setIsPublicMintActive(status)
+  //    setIsPublicMintActive(status)
   //   } catch (err) {
   //     console.log("An error occured when calling contract")
   //   }
@@ -74,7 +74,8 @@ export default function Home() {
             <Frame />
             {!isPublicMintActive && <p className='p-2'>You have {numToken} colors</p>}
             <div>
-              <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={numToken} tokenList={tokenList}/>
+              {!isPublicMintActive && <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={numToken} tokenList={tokenList}/>}
+              {isPublicMintActive && <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={10} tokenList={tokenList}/>}
               {!isConnected && <Alert message="Connect to ETH mainnet to mint" />}
             </div>
           </div>
