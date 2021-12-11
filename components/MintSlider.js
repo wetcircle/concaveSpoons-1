@@ -8,28 +8,14 @@ function MintSlider(props) {
     const [sliderValue, setSliderValue] = useState(1);
     const handleChange = (sliderValues) => {
         setSliderValue(sliderValues / 10);
-        // console.log(sliderValues/10);
     };
-
-    async function updateTotalSupply() {
-         let w3 = new web3(ethereum);
-         let contract = new w3.eth.Contract(props.contractInfo["ABI"], props.contractInfo["ADDRESS"]);
-         let totalSupply;
-         await contract.methods.totalSupply().call().then((_result) => {
-             totalSupply = _result;
-         }).catch((err) => console.log(err));
-         props.updateMint(totalSupply);
-    }
-
-    useEffect(() => {
-         updateTotalSupply();
-    }, []);
 
     async function mint(value, srcAddress, contractAddress){
         let w3 = new web3(ethereum);
         let contract = new w3.eth.Contract(props.contractInfo["ABI"], contractAddress);
 
-        let publicSaleStatus;
+        // Read if the public sale is enabled/disabled
+        let publicSaleStatus;                                                                        
         await contract.methods.isPublicMintActive().call().then((_result) => {
             publicSaleStatus = _result;
         }).catch((err) => console.log(err));
@@ -37,7 +23,7 @@ function MintSlider(props) {
         let mintPrice = publicSaleStatus ? 0.04 : 0;
 
         const _price = w3.utils.toWei((value * mintPrice).toString());
-        const _contractMethod = publicSaleStatus ? contract.methods.mint(value) : contract.methods.mintBatch(props.tokenList.slice(-value));
+        const _contractMethod = publicSaleStatus ? contract.methods.mint(value) : contract.methods.mintColorsBatch(props.tokenList.slice(-value));
 
         let tx = {
             from: srcAddress,
