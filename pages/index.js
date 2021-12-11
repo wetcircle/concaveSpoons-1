@@ -70,8 +70,17 @@ export default function Home() {
     setTotalMinted(totalSupply)
  }
 
+ async function publicSaleStatus() {
+  let w3 = new web3(ethereum);
+  let contract = new w3.eth.Contract(CONTRACT["ABI"], CONTRACT["ADDRESS"]);                                                              
+  await contract.methods.isPublicMintActive().call().then((_result) => {
+      setIsPublicMintActive(_result);
+  }).catch((err) => console.log(err));
+ }
+
  useEffect(() => {
   updateTotalSupply();
+  publicSaleStatus();
  }, []);
 
   return (
