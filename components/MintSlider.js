@@ -64,15 +64,22 @@ function MintSlider(props) {
     //     return txHash
     // }
 
+    function getMarks(max){
+        const filtered = Object.fromEntries(
+            Object.entries(marks).filter(([key, value]) => key <= max) )
+        console.log(filtered);
+        return filtered;
+    }
+
     return (
         <div className="space-y-10 text-center">
-            <div className="w-[150px] md:w-[270px]">
-                <Slider min={10} max={props.numToken * 10} marks={marks} step={null} defaultValue={0}
+            <div className="w-[150px] md:w-[auto]">
+                {props.numToken > 1 && <Slider min={10} max={(props.numToken <= 10 ? props.numToken * 10 : 100)} marks={getMarks(props.numToken * 10)} step={null} defaultValue={0}
                     onChange={handleChange}
                     trackStyle={[{ backgroundColor: '#FFF5BD' }]}
                     handleStyle={[{ backgroundColor: '#FFF5BD' }]}
                     railStyle={{ backgroundColor: 'black' }}
-                />
+                />}
             </div>
             <button disabled={!props.verified} onClick={() => mint(sliderValue, props.mintAddress, CONTRACT_ADDRESS)} className={props.verified ? "border-2 py-2 px-8" : "border-2 py-2 px-8 opacity-20"}>Mint</button>
         </div>
