@@ -14,7 +14,7 @@ function MintSlider(props) {
     async function updateTotalSupply() {
          let w3 = new web3(ethereum);
          let contract = new w3.eth.Contract(props.contractInfo["ABI"], props.contractInfo["ADDRESS"]);
-         let totalSupply;                                                                          // Determines the transaction value to use, based on if isPublicMintActive is true/false in the contract
+         let totalSupply;
          await contract.methods.totalSupply().call().then((_result) => {
              totalSupply = _result;
          }).catch((err) => console.log(err));
@@ -29,7 +29,7 @@ function MintSlider(props) {
         let w3 = new web3(ethereum);
         let contract = new w3.eth.Contract(props.contractInfo["ABI"], contractAddress);
 
-        let publicSaleStatus;                                                                          // Determines the transaction value to use, based on if isPublicMintActive is true/false in the contract
+        let publicSaleStatus;
         await contract.methods.isPublicMintActive().call().then((_result) => {
             publicSaleStatus = _result;
         }).catch((err) => console.log(err));
@@ -67,7 +67,6 @@ function MintSlider(props) {
     function getMarks(max){
         const filtered = Object.fromEntries(
             Object.entries(marks).filter(([key, value]) => key <= max) )
-        console.log(filtered);
         return filtered;
     }
 
