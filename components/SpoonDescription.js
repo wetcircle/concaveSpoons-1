@@ -8,7 +8,9 @@ function SpoonDescription( {totalMinted} ) {
     return (
         <div className="space-y-8">
             <h1 className="text-4xl font-extrabold">The Concave Spoons</h1>
-            <p className="text-lg">The Concave Spoons is a premium collection of 4317 images, exactly the same number of Colors NFTs in existence, living on IPFS. The backgrounds used in the collection are the Colors NFTs, in the same exact order. In a world of forks, frens spoon frens</p>
+            <p className="text-lg">The Concave Spoons is an exclusive collection of Concave X Colors Spoons living on IPFS. The backgrounds used in the collection are the Colors NFTs, in the same exact order. </p>
+            <p className="text-lg">The first 200 Spoons are free to mint for Colors NFT holders at a 1:1 rate.</p>
+            <p className="text-lg">In a world of forks, frens spoon frens</p>
             <div className="space-y-3">
                 <div className="flex space-x-6 items-center text-2xl">
                     <a href="https://twitter.com/Concave_Spoons" className="hover:animate-spin cursor-pointer"><BsTwitter /></a>
@@ -22,11 +24,11 @@ function SpoonDescription( {totalMinted} ) {
                 <div className="border-b w-90 pt-2" />
                 <div className="flex space-x-5 items-center">
                     <div className="flex items-center space-x-1">
-                    <div className="text-lg">Price = 0.04</div>
+                    <div className="text-xl">Price = 0.02</div>
                     <FaEthereum />
                     </div>
                     <div className="text-xl">∞</div>
-                    <div className="text-lg"> {totalMinted} / 4317 Minted </div>
+                    <div className="text-lg"> {totalMinted} / 8888 Minted </div>
                 </div>
             </div>
         </div>
