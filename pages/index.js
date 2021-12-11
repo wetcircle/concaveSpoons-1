@@ -72,9 +72,10 @@ export default function Home() {
           </div>
           <div className="">
             <Frame />
-            {!isPublicMintActive && <p className='p-2'>You have {numToken} colors</p>}
+            {!isPublicMintActive && <p className='p-2'>You have {numToken} unclaimed "The Colors" NFTs</p>}
+            {numToken == 0 && <p className='p-2'>Acquire a "The Colors" NFT to participate in the presale!</p>}
             <div>
-              {!isPublicMintActive && <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={numToken} tokenList={tokenList}/>}
+              {(!isPublicMintActive && numToken > 0) && <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={numToken} tokenList={tokenList}/>}
               {isPublicMintActive && <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={10} tokenList={tokenList}/>}
               {!isConnected && <Alert message="Connect to ETH mainnet to mint" />}
             </div>
