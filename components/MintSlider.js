@@ -51,15 +51,23 @@ function MintSlider(props) {
     }
 
     function getMarks(max){
-        const filtered = Object.fromEntries(
-            Object.entries(marks).filter(([key, value]) => key <= max) )
-        return filtered;
+        let object = {};
+        if (max > 25) {max = 25};
+        for (let i = 1; i <= max; i++) {
+            object[i*10] = {
+                style: {
+                    width:"10px",
+                },
+                label: i.toString()
+            }
+        }
+        return object;
     }
 
     return (
         <div className="space-y-10 text-center">
             <div className="w-[150px] md:w-[auto]">
-                {props.numToken > 1 && <Slider min={10} max={(props.numToken <= 10 ? props.numToken * 10 : 100)} marks={getMarks(props.numToken * 10)} step={null} defaultValue={0}
+                {props.numToken > 1 && <Slider min={10} max={(props.numToken <= 25 ? props.numToken * 10 : 250)} marks={getMarks(props.numToken)} step={null} defaultValue={0}
                     onChange={handleChange}
                     trackStyle={[{ backgroundColor: '#FFF5BD' }]}
                     handleStyle={[{ backgroundColor: '#FFF5BD' }]}
