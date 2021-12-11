@@ -2,10 +2,21 @@ import { FaWallet } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
 import detectEthereumProvider from '@metamask/detect-provider';
 import { useState, useEffect } from "react";
+let web3 = require('web3');
 
-function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddress, saveNumToken, saveTokenList }) {
+function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddress, saveNumToken, saveTokenList, contractInfo}) {
     const router = useRouter();
     const [localAddress, setLocalAddress] = useState("Connect Wallet");
+
+    const colorTokenList = async (passAddress) => {
+        let w3 = new web3(ethereum);
+        let contract = new w3.eth.Contract(contractInfo['ABI'], contractInfo['ADDRESS']);
+        let tokenList;
+        await contract.methods.getUnmintedSpoonsByUser(passAddress).call().then((_result) => {
+            tokenList = _result;
+        }).catch((err) => console.log(err));
+        return tokenList
+    };
 
     const connectWallet = () => {
         if (detectEthereumProvider()) {
@@ -14,12 +25,13 @@ function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddre
                 updateStatus(true);
                 sendAlert(false);
                 // console.log("User is connected");
-                account.then(function (result) {
+                account.then(async function (result) {
                     let currAddress = result[0];
                     saveAddress(currAddress);
                     setLocalAddress(currAddress.slice(0, 6) + "..." + currAddress.slice(-6));
-                    saveTokenList(["list of token ids"]) // from metamask
-                    saveNumToken(0) // an integer, size of the list we get back from metamask
+                    let tokenList = await colorTokenList(currAddress);
+                    saveTokenList(tokenList[0].slice().sort(function(a,b){return a - b})); // from metamask
+                    saveNumToken(tokenList[1]) // an integer, size of the list we get back from metamask
                 })
             } else {
                 updateStatus(false);
