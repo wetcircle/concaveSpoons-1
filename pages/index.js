@@ -8,6 +8,7 @@ import Alert from '../components/Alert';
 import PrivateView from '../components/PrivateView';
 let web3 = require('web3');
 import detectEthereumProvider from '@metamask/detect-provider';
+import { InjectedConnector } from "@web3-react/injected-connector";
 
 export default function Home() {
   const [totalMinted, setTotalMinted] = useState(0);
@@ -106,11 +107,19 @@ export default function Home() {
       writeErrorMessage("Please install MetaMask!");
   }
 }
-
+ 
+ 
+ const injected = new InjectedConnector({ supportedChainIds: [1, 4, 1337] });
+  
  useEffect(() => {
   updateTotalSupply();
   publicSaleStatus();
-  connectWallet();
+  injected.isAuthorized().then((isAuthorized) => {
+    if (isAuthorized) {
+      connectWallet();
+      handleVerification(true);
+    }
+  });
   if (window.ethereum) {
     connectWallet();
     window.ethereum.on("accountsChanged", (accounts) => {
