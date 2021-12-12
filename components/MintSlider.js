@@ -14,12 +14,6 @@ function MintSlider(props) {
         let w3 = new web3(ethereum);
         let contract = new w3.eth.Contract(props.contractInfo["ABI"], contractAddress);
 
-        // Read if the public sale is enabled/disabled
-        let publicSaleStatus;                                                                        
-        await contract.methods.isPublicMintActive().call().then((_result) => {
-            publicSaleStatus = _result;
-        }).catch((err) => console.log(err));
-
         let mintPrice = props.isPublicMintActive ? 0.02 : 0;
 
         const _price = w3.utils.toWei((value * mintPrice).toString());
