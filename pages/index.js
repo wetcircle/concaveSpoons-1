@@ -7,6 +7,7 @@ import MintSlider from '../components/MintSlider';
 import Alert from '../components/Alert';
 import PrivateView from '../components/PrivateView';
 let web3 = require('web3');
+import { InjectedConnector } from "@web3-react/injected-connector";
 
 export default function Home() {
   const [totalMinted, setTotalMinted] = useState(0);
@@ -71,16 +72,23 @@ export default function Home() {
  }
 
  async function publicSaleStatus() {
-  let w3 = new web3(ethereum);
-  let contract = new w3.eth.Contract(CONTRACT["ABI"], CONTRACT["ADDRESS"]);                                                              
-  await contract.methods.isPublicMintActive().call().then((_result) => {
-      setIsPublicMintActive(_result);
-  }).catch((err) => console.log(err));
+    let w3 = new web3(ethereum);
+    let contract = new w3.eth.Contract(CONTRACT["ABI"], CONTRACT["ADDRESS"]);                                                              
+    await contract.methods.isPublicMintActive().call().then((_result) => {
+    setIsPublicMintActive(_result);
+    }).catch((err) => console.log(err));
  }
+
+ const injected = new InjectedConnector({ supportedChainIds: [1, 4, 1337] });
 
  useEffect(() => {
   updateTotalSupply();
   publicSaleStatus();
+  injected.isAuthorized().then((isAuthorized) => {
+    if (isAuthorized) {
+      setIsConnected(true);
+    }
+  });
  }, []);
 
   return (
