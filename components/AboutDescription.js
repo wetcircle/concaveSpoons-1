@@ -4,7 +4,7 @@ function AboutDescription() {
     return (
         <div className="space-y-8">
             <h1 className="text-4xl font-extrabold">About</h1>
-            <p className="text-lg">The Concave Spoons is a dual collection in collaboration with The Colors on IPFS and on-chain. The IPFS collection consists of 4317 images, exactly the same number of Colors NFTs in existence. The backgrounds used in the collection are the Colors NFTs, in the same exact order. Our on-chain collection consists of 8888, fully on-chain SVGs which are generated on-mint using the Colors Primitive smart contracts.</p>
+            <p className="text-lg">The Concave Spoons is a dual collection in collaboration with The Colors on IPFS and on-chain. The IPFS collection consists of 8888 images, exactly the same number of Colors NFTs in existence. The backgrounds used in the collection are the Colors NFTs, in the same exact order. Our on-chain collection consists of 8888, fully on-chain SVGs which are generated on-mint using the Colors Primitive smart contracts.</p>
             <div className="space-y-6">
                 <h1 className="text-2xl font-extrabold">Why a dual collection?</h1>
                 <p>Good question. We spent a lot of time discussing this very same thing, analyzing pros and cons, agreeing and disagreeing on what our focus should be. We realized however that there can't be a definitive answer, since there are bound to be different audiencies with different tastes in the Venn diagram of IPFS and On-chain enjoyers.  </p>
