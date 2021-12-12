@@ -110,9 +110,7 @@ export default function Home() {
  useEffect(() => {
   updateTotalSupply();
   publicSaleStatus();
-  if (detectEthereumProvider()) {
-    connectWallet();
-  }
+  connectWallet();
   if (window.ethereum) {
     connectWallet();
     window.ethereum.on("accountsChanged", (accounts) => {
