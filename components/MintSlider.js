@@ -1,11 +1,11 @@
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useState, useEffect } from 'react';
-import marks from './SliderMarks';
 let web3 = require('web3');
 
 function MintSlider(props) {
     const [sliderValue, setSliderValue] = useState(1);
+    
     const handleChange = (sliderValues) => {
         setSliderValue(sliderValues / 10);
     };
@@ -19,11 +19,12 @@ function MintSlider(props) {
         await contract.methods.isPublicMintActive().call().then((_result) => {
             publicSaleStatus = _result;
         }).catch((err) => console.log(err));
+        console.log(props.isPublicMintActive);
 
-        let mintPrice = publicSaleStatus ? 0.02 : 0;
+        let mintPrice = props.isPublicMintActive ? 0.02 : 0;
 
         const _price = w3.utils.toWei((value * mintPrice).toString());
-        const _contractMethod = publicSaleStatus ? contract.methods.mint(value) : contract.methods.mintColorsBatch(props.tokenList.slice(-value));
+        const _contractMethod = props.isPublicMintActive ? contract.methods.mint(value) : contract.methods.mintColorsBatch(props.tokenList.slice(-value));
 
         let tx = {
             from: srcAddress,
