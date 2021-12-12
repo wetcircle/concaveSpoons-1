@@ -19,7 +19,6 @@ function MintSlider(props) {
         await contract.methods.isPublicMintActive().call().then((_result) => {
             publicSaleStatus = _result;
         }).catch((err) => console.log(err));
-        console.log(props.isPublicMintActive);
 
         let mintPrice = props.isPublicMintActive ? 0.02 : 0;
 
