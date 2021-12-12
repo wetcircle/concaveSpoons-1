@@ -83,7 +83,7 @@ export default function Home() {
 };
 
  const connectWallet = () => {
-  if (true) {
+  if (detectEthereumProvider()) {
       const account = ethereum.request({ method: 'eth_requestAccounts' });
       if (ethereum.chainId == "0x4") { // eth = 0x1 rinkeby = 0x4
           // console.log("User is connected");
