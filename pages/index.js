@@ -87,6 +87,7 @@ export default function Home() {
   injected.isAuthorized().then((isAuthorized) => {
     if (isAuthorized) {
       setIsConnected(true);
+      showAlert(false);
     }
   });
  }, []);
