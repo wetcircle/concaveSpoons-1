@@ -128,6 +128,9 @@ export default function Home() {
         handleVerification(false);
       }
     });
+    window.ethereum.on("networkChanged", () => {
+      connectWallet();
+    });
   }
  }, []);
 
