@@ -1,63 +1,9 @@
 import { FaWallet } from "react-icons/fa";
 import { useRouter } from "next/dist/client/router";
-import detectEthereumProvider from '@metamask/detect-provider';
-import { useState, useEffect } from "react";
-let web3 = require('web3');
 
-function Header({ verified, updateStatus, sendAlert, saveErrorMessage, saveAddress, saveNumToken, saveTokenList, contractInfo}) {
+function Header({ verified, fullAddress, connectWallet}) {
     const router = useRouter();
-    const [localAddress, setLocalAddress] = useState("Connect Wallet");
-
-    const colorTokenList = async (passAddress) => {
-        let w3 = new web3(ethereum);
-        let contract = new w3.eth.Contract(contractInfo['ABI'], contractInfo['ADDRESS']);
-        let tokenList;
-        await contract.methods.getUnmintedSpoonsByUser(passAddress).call().then((_result) => {
-            tokenList = _result.filter(token => token < 9999);
-        }).catch((err) => console.log(err));
-        return tokenList
-    };
-
-    const connectWallet = () => {
-        if (detectEthereumProvider()) {
-            const account = ethereum.request({ method: 'eth_requestAccounts' });
-            if (ethereum.chainId == "0x4") { // eth = 0x1 rinkeby = 0x4
-                // console.log("User is connected");
-                account.then(async function (result) {
-                    let currAddress = result[0];
-                    updateStatus(true);
-                    sendAlert(false);
-                    saveAddress(currAddress);
-                    setLocalAddress(currAddress.slice(0, 6) + "..." + currAddress.slice(-6));
-                    let tokenList = await colorTokenList(currAddress);
-                    saveTokenList(tokenList); // from metamask
-                    saveNumToken(tokenList.length) // an integer, size of the list we get back from metamask
-                })
-            } else {
-                updateStatus(false);
-                sendAlert(true);
-                saveErrorMessage("Connect to eth mainnet");
-            }
-        } else {
-            updateStatus(false);
-            sendAlert(true);
-            saveErrorMessage("Please install MetaMask!");
-        }
-    }
-
-    useEffect(() => {
-        if (window.ethereum) {
-            connectWallet();
-            window.ethereum.on("accountsChanged", (accounts) => {
-                if (accounts.length > 0) {
-                    connectWallet();
-                } else {
-                    updateStatus(false);
-                    setLocalAddress("Connect Wallet");
-                }
-            });
-        }
-    }, []);
+    const localAddress = verified ? fullAddress.slice(0, 6) + "..." + fullAddress.slice(-6) : "Connect Wallet";
 
     return (
         <header className="sticky text-sm md:text-lg top-0 z-50 grid grid-cols-1 md:grid-cols-2 gap-y-3 p-5 md:px-10 items-center bg-gray-medium2">
