@@ -7,7 +7,7 @@ import MintSlider from '../components/MintSlider';
 import Alert from '../components/Alert';
 import PrivateView from '../components/PrivateView';
 let web3 = require('web3');
-import { InjectedConnector } from "@web3-react/injected-connector";
+import detectEthereumProvider from '@metamask/detect-provider';
 
 export default function Home() {
   const [totalMinted, setTotalMinted] = useState(0);
@@ -51,17 +51,8 @@ export default function Home() {
     setIsConnected(value);
   }
 
-  // var concavenft = new Contract(jsonInterface, address);
-  // useEffect(() => {
-  //   try {
-  //     const status = await concavenft.isPublicMintActive();
-  //    setIsPublicMintActive(status)
-  //   } catch (err) {
-  //     console.log("An error occured when calling contract")
-  //   }
-  // }, [])
 
-  async function updateTotalSupply() {
+ async function updateTotalSupply() {
     let w3 = new web3(ethereum);
     let contract = new w3.eth.Contract(CONTRACT["ABI"], CONTRACT["ADDRESS"]);
     let totalSupply;                                                                         
@@ -79,17 +70,57 @@ export default function Home() {
     }).catch((err) => console.log(err));
  }
 
- const injected = new InjectedConnector({ supportedChainIds: [1, 4, 1337] });
+ const colorTokenList = async (passAddress) => {
+  let w3 = new web3(ethereum);
+  let contract = new w3.eth.Contract(CONTRACT['ABI'], CONTRACT['ADDRESS']);
+  let tokenList;
+  await contract.methods.getUnmintedSpoonsByUser(passAddress).call().then((_result) => {
+      console.log(_result);
+      tokenList = _result.filter(token => token < 9999);
+  }).catch((err) => console.log(err));
+  return tokenList
+};
+
+ const connectWallet = () => {
+  if (detectEthereumProvider()) {
+      const account = ethereum.request({ method: 'eth_requestAccounts' });
+      if (ethereum.chainId == "0x4") { // eth = 0x1 rinkeby = 0x4
+          // console.log("User is connected");
+          account.then(async function (result) {
+              let currAddress = result[0];
+              handleVerification(true);
+              showAlert(false);
+              writeAddress(currAddress);
+              let tokenList = await colorTokenList(currAddress);
+              writeTokenList(tokenList); // from metamask
+              writeNumToken(tokenList.length) // an integer, size of the list we get back from metamask
+          })
+      } else {
+          handleVerification(false);
+          showAlert(true);
+          writeErrorMessage("Connect to eth mainnet");
+      }
+  } else {
+      handleVerification(false);
+      showAlert(true);
+      writeErrorMessage("Please install MetaMask!");
+  }
+}
 
  useEffect(() => {
   updateTotalSupply();
   publicSaleStatus();
-  injected.isAuthorized().then((isAuthorized) => {
-    if (isAuthorized) {
-      setIsConnected(true);
-      showAlert(false);
-    }
-  });
+  if (window.ethereum) {
+    connectWallet();
+    window.ethereum.on("accountsChanged", (accounts) => {
+      if (accounts.length > 0) {
+        connectWallet();
+      } else {
+        writeNumToken(0);
+        handleVerification(false);
+      }
+    });
+  }
  }, []);
 
   return (
@@ -100,7 +131,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header verified={isConnected} updateStatus={handleVerification} sendAlert={showAlert} saveErrorMessage={writeErrorMessage} saveAddress={writeAddress} saveNumToken={writeNumToken} saveTokenList={writeTokenList} contractInfo={CONTRACT} />
+      <Header verified={isConnected} fullAddress={address} connectWallet={connectWallet} />
       {connectionError && <Alert message={errorMessage} />}
       <main className="max-w-7xl mx-auto px-8 md:px-16 h-800px md:h-[1100px]">
         <section className="pt-6 mt-20 grid grid-cols-1 lg:grid-cols-2 md:space-x-10 gap-y-10">
@@ -113,7 +144,7 @@ export default function Home() {
             {(!isPublicMintActive && numToken == 0) && <p className='p-2'>Acquire a "The Colors" NFT to participate in the presale!</p>}
             <div>
               {(!isPublicMintActive && numToken > 0) && <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={numToken} tokenList={tokenList} contractInfo={CONTRACT}/>}
-              {isPublicMintActive && <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={25} tokenList={tokenList} contractInfo={CONTRACT}/>}
+              {isPublicMintActive && <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={25} tokenList={tokenList} isPublicMintActive={isPublicMintActive} contractInfo={CONTRACT}/>}
               {!isConnected && <Alert message="Connect to ETH mainnet to mint" />}
             </div>
           </div>
