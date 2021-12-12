@@ -117,11 +117,9 @@ export default function Home() {
   injected.isAuthorized().then((isAuthorized) => {
     if (isAuthorized) {
       connectWallet();
-      handleVerification(true);
     }
   });
   if (window.ethereum) {
-    connectWallet();
     window.ethereum.on("accountsChanged", (accounts) => {
       if (accounts.length > 0) {
         connectWallet();
