@@ -17,7 +17,7 @@ function MintSlider(props) {
         let mintPrice = props.isPublicMintActive ? 0.02 : 0;
 
         const _price = w3.utils.toWei((value * mintPrice).toString());
-        const _contractMethod = props.isPublicMintActive ? contract.methods.mint(value) : contract.methods.mintColorsBatch(props.tokenList.slice(-value));
+        const _contractMethod = props.isPublicMintActive ? contract.methods.mintMany(value) : contract.methods.mintColorsBatch(props.tokenList.slice(-value));
 
         let tx = {
             from: srcAddress,
