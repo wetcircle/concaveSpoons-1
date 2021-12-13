@@ -23,7 +23,6 @@ function MintSlider(props) {
             from: srcAddress,
             to : contractAddress,
             data : _contractMethod.encodeABI(),
-            nonce: "0x00",
             value: w3.utils.numberToHex(_price)
         }
         const gasEstimate = await _contractMethod.estimateGas(tx).catch((err) => alert(err['message']));   // improved gas estimation as suggested by wetcircle
