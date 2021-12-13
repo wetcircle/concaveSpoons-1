@@ -5,7 +5,6 @@ import Header from '../components/Header'
 import { useState, useEffect } from 'react';
 import MintSlider from '../components/MintSlider';
 import Alert from '../components/Alert';
-import PrivateView from '../components/PrivateView';
 let web3 = require('web3');
 import detectEthereumProvider from '@metamask/detect-provider';
 import { InjectedConnector } from "@web3-react/injected-connector";
@@ -100,7 +99,7 @@ export default function Home() {
         } else {
           handleVerification(false);
           showAlert(true);
-          writeErrorMessage("Connect to eth mainnet");
+          writeErrorMessage("Connect to Ethereum Mainnet");
         }
       }
     }
@@ -159,7 +158,7 @@ export default function Home() {
     <div>
     {(!isPublicMintActive && numToken > 0) && <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={numToken} tokenList={tokenList} contractInfo={CONTRACT}/>}
     {isPublicMintActive && <MintSlider verified={isConnected} mintAddress={address} currentMint={totalMinted} updateMint={incrementMint} numToken={25} tokenList={tokenList} isPublicMintActive={isPublicMintActive} contractInfo={CONTRACT}/>}
-    {!isConnected && <Alert message="Connect to ETH mainnet to mint" />}
+    {!isConnected && <Alert message="Connect to Ethereum Mainnet to mint" />}
     </div>
     </div>
     </section>
