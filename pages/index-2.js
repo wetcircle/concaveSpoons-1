@@ -99,7 +99,7 @@ export default function Home() {
         } else {
           handleVerification(false);
           showAlert(true);
-          writeErrorMessage("Connect to Ethereum Mainnet");
+          writeErrorMessage("Switch network to Ethereum Mainnet");
         }
       }
     }
