@@ -85,7 +85,7 @@ export default function Home() {
     try {
       if (detectEthereumProvider()) {
         const account = ethereum.request({ method: 'eth_requestAccounts' });
-        if (ethereum.chainId == "0x4") { // eth = 0x1 rinkeby = 0x4
+        if (ethereum.chainId == "0x1") { // eth = 0x1 rinkeby = 0x4
           // console.log("User is connected");
           account.then(async function (result) {
             let currAddress = result[0];
@@ -111,7 +111,7 @@ export default function Home() {
   }
   
   
-  const injected = new InjectedConnector({ supportedChainIds: [1, 4] });
+  const injected = new InjectedConnector({ supportedChainIds: [1] });
   
   useEffect(() => {
     injected.isAuthorized().then((isAuthorized) => {
